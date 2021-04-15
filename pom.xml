@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>aes-spring-boot-starter</name>
     <description>自定义AES算法工具类的实现</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>
