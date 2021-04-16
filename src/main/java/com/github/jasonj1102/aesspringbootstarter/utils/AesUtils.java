@@ -1,6 +1,7 @@
 package com.github.jasonj1102.aesspringbootstarter.utils;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -11,7 +12,9 @@ import java.util.Base64;
  * @version 1.0
  * success come from self-discipline
  * @date 2021/4/14 22:44
+ * @ value 注解不能 和new 一起使用，@value注解调用在new构造方法之后
  */
+@Component
 public class AesUtils {
 
 
@@ -22,8 +25,6 @@ public class AesUtils {
     }
 
     private static String KEY;
-
-
 
     private static final String AES_ALGORITHM = "AES/ECB/PKCS5Padding";
 
@@ -48,6 +49,7 @@ public class AesUtils {
      * @throws Exception
      */
     public  String encrypt(String data) throws Exception {
+        System.out.println("key1 = "+KEY);
         Cipher cipher = getCipher(KEY, Cipher.ENCRYPT_MODE);
         return Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes()));
     }
