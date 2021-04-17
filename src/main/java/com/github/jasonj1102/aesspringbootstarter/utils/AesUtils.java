@@ -11,8 +11,8 @@ import java.util.Base64;
  * @author jie
  * @version 1.0
  * success come from self-discipline
- * @date 2021/4/14 22:44
- * @ value 注解不能 和new 一起使用，@value注解调用在new构造方法之后
+ * 2021/4/14 22:44
+ * value注解不能 和new 一起使用，value注解调用在new构造方法之后
  */
 @Component
 public class AesUtils {
