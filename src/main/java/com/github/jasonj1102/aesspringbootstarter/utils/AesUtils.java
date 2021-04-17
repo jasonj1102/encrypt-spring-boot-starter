@@ -14,17 +14,13 @@ import java.util.Base64;
  * 2021/4/14 22:44
  * value注解不能 和new 一起使用，value注解调用在new构造方法之后
  */
-@Component
 public class AesUtils {
 
+    private String key;
 
-
-    @Value(value = "${myProperties.key}")
-    public void setSecret(String key){
-        KEY = key;
+    public AesUtils(String key){
+        this.key = key;
     }
-
-    private static String KEY;
 
     private static final String AES_ALGORITHM = "AES/ECB/PKCS5Padding";
 
@@ -48,9 +44,8 @@ public class AesUtils {
      * @return String
      * @throws Exception
      */
-    public  String encrypt(String data) throws Exception {
-        System.out.println("key1 = "+KEY);
-        Cipher cipher = getCipher(KEY, Cipher.ENCRYPT_MODE);
+    public String encrypt(String data) throws Exception {
+        Cipher cipher = getCipher(key, Cipher.ENCRYPT_MODE);
         return Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes()));
     }
 
@@ -60,8 +55,8 @@ public class AesUtils {
      * @return String
      * @throws Exception
      */
-    public  String decrypt(String data) throws Exception {
-        Cipher cipher = getCipher(KEY, Cipher.DECRYPT_MODE);
+    public String decrypt(String data) throws Exception {
+        Cipher cipher = getCipher(key, Cipher.DECRYPT_MODE);
         return new String(cipher.doFinal(Base64.getDecoder().decode(data)));
     }
 }
